@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formula de Bhaskara</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    </head>
+
+    <body> 
+        <main class="container">
+            <h1>Formula de Bhaskara</h1>
+            <section id="formulario">
+                <form method="POST">
+                    Digite o valor de a: <input type="number" name="a" step="0.1">
+                    <p></p>
+                    Digite o valor de b: <input type="number" name="b" step="0.1">
+                    <p></p>
+                    Digite o valor de c: <input type="number" name="c" step="0.1">
+                    <p></p>
+                    <button type="submit" id="botoes">Calcular</button>
+                </form>
+            </section>
+
+            {% if delta is not none %}
+                <p><strong>Delta: {{ delta }}</strong></p>
+                {% if delta < 0 %}
+                    <p><strong>{{ x }}</strong></p>
+                {% elif delta == 0 %}
+                    <p>Existe uma raiz real: {{ x }}</p>
+                {% else %}
+                    <p>Existem duas raízes reais: {{ x1 }} e {{ x2 }}</p>
+                {% endif %}
+            {% endif %}
+
+            {% if erro is not none %}
+                <p style="color: red;">{{ erro }}</p>
+            {% endif %}
+
+        </main>
+    </body>
+</html>
