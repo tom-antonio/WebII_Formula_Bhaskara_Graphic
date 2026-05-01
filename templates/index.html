@@ -3,12 +3,18 @@
     <head>
         <title>Formula de Bhaskara</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+        <style>
+            #formulario, #resultado, #grafico{
+                max-width: 420px;
+                margin: 60px auto;
+            }
+        </style>
     </head>
 
     <body> 
         <main class="container">
-            <h1>Formula de Bhaskara</h1>
             <section id="formulario">
+                <h1>Formula de Bhaskara</h1>
                 <form method="POST">
                     Digite o valor de a: <input type="number" name="a" step="0.1">
                     <p></p>
@@ -20,21 +26,34 @@
                 </form>
             </section>
 
-            {% if delta is not none %}
-                <p><strong>Delta: {{ delta }}</strong></p>
-                {% if delta < 0 %}
-                    <p><strong>{{ x }}</strong></p>
-                {% elif delta == 0 %}
-                    <p>Existe uma raiz real: {{ x }}</p>
-                {% else %}
-                    <p>Existem duas raízes reais: {{ x1 }} e {{ x2 }}</p>
+            <section id="resultado">
+                <h3>Resultado:</h3>
+                <p>Equação: {{ a }}x² + {{ b }}x + {{ c }} = 0</p>
+                <p><strong>A: {{ a }}</strong></p>
+                <p><strong>B: {{ b }}</strong></p>
+                <p><strong>C: {{ c }}</strong></p>
+                {% if delta is not none %}
+                    <p><strong>Delta: {{ delta }}</strong></p>
+                    {% if delta < 0 %}
+                        <p><strong>{{ x }}</strong></p>
+                    {% elif delta == 0 %}
+                        <p>Existe uma raiz real: {{ x }}</p>
+                    {% else %}
+                        <p>Existem duas raízes reais: {{ x1 }} e {{ x2 }}</p>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
 
-            {% if erro is not none %}
-                <p style="color: red;">{{ erro }}</p>
-            {% endif %}
+                {% if erro is not none %}
+                    <p style="color: red;">{{ erro }}</p>
+                {% endif %}
+            </section>
 
+            <section id="grafico">
+                {% if grafico_url is not none %}
+                    <h3>Gráfico da Parábola:</h3>
+                    <img src="{{ url_for('static', filename='grafico.png') }}" alt="Gráfico da função quadrática">
+                {% endif %}
+            </section>
         </main>
     </body>
 </html>
