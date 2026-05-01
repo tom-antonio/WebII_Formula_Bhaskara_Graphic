@@ -4,7 +4,7 @@
         <title>Formula de Bhaskara</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
         <style>
-            #formulario, #resultado, #grafico{
+            #formulario, #resultado, #grafico, #historico {
                 max-width: 420px;
                 margin: 60px auto;
             }
@@ -52,6 +52,27 @@
                 {% if grafico_url is not none %}
                     <h3>Gráfico da Parábola:</h3>
                     <img src="{{ url_for('static', filename='grafico.png') }}" alt="Gráfico da função quadrática">
+                {% endif %}
+            </section>
+
+            <section id="historico">
+                <h3>Histórico</h3>
+                {% if historico %}
+                    {% for item in historico|reverse %}
+                        <article>
+                            <p><strong>A:</strong> {{ item.a }} | <strong>B:</strong> {{ item.b }} | <strong>C:</strong> {{ item.c }}</p>
+                            <p><strong>Delta:</strong> {{ item.delta }}</p>
+                            {% if item.raizes.x1 is not none and item.raizes.x2 is not none %}
+                                <p><strong>Raízes:</strong> X1 = {{ item.raizes.x1 }}, X2 = {{ item.raizes.x2 }}</p>
+                            {% elif item.raizes.x is not none %}
+                                <p><strong>Raiz:</strong> X = {{ item.raizes.x }}</p>
+                            {% else %}
+                                <p><strong>Raízes:</strong> Não há raízes reais.</p>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <p>Nenhum cálculo realizado ainda.</p>
                 {% endif %}
             </section>
         </main>
