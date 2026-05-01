@@ -8,6 +8,8 @@ Implementar uma solução didática que permita:
 1. Receber os coeficientes $a$, $b$ e $c$ via formulário web.
 2. Calcular o discriminante ($\Delta$).
 3. Determinar e exibir a natureza das raízes reais da equação.
+4. Gerar o gráfico da função quadrática.
+5. Salvar o histórico dos cálculos.
 
 ## Fundamentação Teórica
 Para uma equação quadrática, o discriminante é dado por:
@@ -34,19 +36,23 @@ $$
 O projeto está organizado nos seguintes arquivos:
 1. app.py: implementa o servidor Flask, o processamento dos dados e a lógica do cálculo.
 2. templates/index.html: define a interface para entrada dos coeficientes e exibição dos resultados.
-3. README.md: documentação do projeto.
+3. static/: armazena o gráfico gerado pela aplicação.
+4. historico.json: guarda o histórico dos cálculos.
+5. README.md: documentação do projeto.
 
 ## Tecnologias Utilizadas
 1. Python 3
 2. Flask
-3. HTML5
-4. Pico CSS (via CDN)
+3. NumPy
+4. Matplotlib
+5. HTML5
+6. Pico CSS (via CDN)
 
 ## Procedimento de Execução
 1. Instalar dependências:
 
 ```bash
-pip install flask
+pip install flask numpy matplotlib
 ```
 
 2. Executar a aplicação:
@@ -65,6 +71,7 @@ http://127.0.0.1:5000/
 A aplicação contempla tratamento básico para:
 1. Entradas inválidas não numéricas.
 2. Exibição de mensagens de erro em caso de exceções inesperadas.
+3. Persistência do histórico em arquivo JSON.
 
 ## Limitações
 1. O caso $a = 0$ não está tratado explicitamente, podendo gerar comportamento inadequado para equações não quadráticas.
